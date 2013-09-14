@@ -1,4 +1,6 @@
-package com.example.laundrylist;
+package laundrylist.controller;
+
+import laundrylist.view.LoginActivity;
 
 public class LoginController {
 	private LoginActivity activity;

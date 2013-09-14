@@ -1,4 +1,9 @@
-package com.example.laundrylist;
+package laundrylist.view;
+
+import laundrylist.controller.LoginController;
+
+import com.example.laundrylist.R;
+import com.example.laundrylist.R.layout;
 
 import android.os.Bundle;
 import android.app.Activity;
