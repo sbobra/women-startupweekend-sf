@@ -21,15 +21,22 @@ public class LoginController extends Controller {
 		this.view = activity;
 		json = new JSONController(this);
 		
+//		Object[] data = new Object[3];
+//
+//		data[0] = "sam.bobra@gmail.com";
+//		data[1] = "Samantha Bobra";
+//		data[2] = "hi";
+//		json.post(JSONPost.NEWACCOUNT, data);
+	}
+	
+	public void onNewUserPressed(String name, String username, String password) {
 		Object[] data = new Object[3];
 
-		// data[0] = "jason.haury@gmail.com";
-		// data[1] = "asdf";
-
-		data[0] = "sam.bobra@gmail.com";
-		data[1] = "Samantha Bobra";
-		data[2] = "hi";
+		data[0] = username;
+		data[1] = name;
+		data[2] = password;
 		json.post(JSONPost.NEWACCOUNT, data);
+
 	}
 
 	public void onLoginPressed(String username, String password) {
@@ -67,5 +74,11 @@ public class LoginController extends Controller {
 			Toast toast = Toast.makeText(view, "Error", duration);
 			toast.show();
 		}
+	}
+	
+	@Override
+	public void onPostResponded(Object o) {
+		view.startActivity(new Intent(view, ExploreActivity.class));
+		view.finish();
 	}
 }

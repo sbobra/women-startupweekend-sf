@@ -10,14 +10,18 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import com.example.laundrylist.R;
 
 public class LoginActivity extends Activity {
 	private LoginController controller;
 	private Button loginButton;
+	private Button newUserButton;
 	private EditText usernameTextBox;
 	private EditText passwordTextBox;
+	private EditText nameTextBox;
+	private LinearLayout nameLayout;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,12 +35,28 @@ public class LoginActivity extends Activity {
 		loginButton = (Button) findViewById(R.id.loginButton);
 		loginButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				controller.onLoginPressed(usernameTextBox.getText().toString(),
-						passwordTextBox.getText().toString());
+				if (nameLayout.getVisibility() == View.VISIBLE) {
+					controller.onNewUserPressed(nameTextBox.getText()
+							.toString(), usernameTextBox.getText().toString(),
+							passwordTextBox.getText().toString());
+				} else {
+					controller.onLoginPressed(usernameTextBox.getText()
+							.toString(), passwordTextBox.getText().toString());
+				}
 			}
 		});
+		newUserButton = (Button) findViewById(R.id.newAcctButton);
+		newUserButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				onNewUserPressed();
+				newUserButton.setVisibility(View.GONE);
+			}
+		});
+
 		usernameTextBox = (EditText) findViewById(R.id.usernameTextBox);
 		passwordTextBox = (EditText) findViewById(R.id.passwordTextBox);
+		nameTextBox = (EditText) findViewById(R.id.nameTextBox);
+		nameLayout = (LinearLayout) findViewById(R.id.nameLayout);
 
 		/*
 		 * Object[] data = new Object[2]; data[0] = "jason.haury@gmail.com";
@@ -44,5 +64,9 @@ public class LoginActivity extends Activity {
 		 * State.getInstance().getJSONController().request(JSONRequest.LOGIN,
 		 * data);
 		 */
+	}
+
+	public void onNewUserPressed() {
+		nameLayout.setVisibility(View.VISIBLE);
 	}
 }
