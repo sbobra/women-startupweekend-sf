@@ -1,0 +1,7 @@
+package laundrylist.controller;
+
+public class Controller {
+	public void onJSONReceived() {
+		
+	}
+}

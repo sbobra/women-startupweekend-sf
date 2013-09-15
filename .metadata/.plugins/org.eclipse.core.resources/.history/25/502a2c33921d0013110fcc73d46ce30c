@@ -1,0 +1,38 @@
+package laundrylist.controller;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.content.Intent;
+import android.os.AsyncTask;
+import laundrylist.model.JSONController.JSONPost;
+import laundrylist.view.ExploreActivity;
+import laundrylist.view.LoginActivity;
+
+public class LoginController {
+	private LoginActivity view;
+
+	public LoginController(LoginActivity activity) {
+		this.view = activity;
+	}
+	
+	public void onLoginPressed() {
+		view.startActivity(new Intent(view, ExploreActivity.class));
+		view.finish();
+	}
+	
+	private class JSONPostTask extends AsyncTask<Object[], Void, String> {
+
+		@Override
+		protected String doInBackground(Object[]... params) {
+			String URL = getURL(params);
+			JSONObject object = getJSON(params);
+			
+		}
+
+		@Override
+		protected void onPostExecute(String result) {
+			//do something
+		}
+	}
+}

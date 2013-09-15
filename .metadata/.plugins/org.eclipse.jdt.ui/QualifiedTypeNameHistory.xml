@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="laundrylist.controller.ExploreController"/>
+<fullyQualifiedTypeName name="com.example.laundrylist.R"/>
+<fullyQualifiedTypeName name="android.widget.Button"/>
+<fullyQualifiedTypeName name="android.view.View"/>
+<fullyQualifiedTypeName name="android.content.Intent"/>
+<fullyQualifiedTypeName name="laundrylist.view.ExploreActivity"/>
+<fullyQualifiedTypeName name="android.os.StrictMode"/>
+<fullyQualifiedTypeName name="android.os.StrictMode.ThreadPolicy"/>
+<fullyQualifiedTypeName name="android.os.AsyncTask"/>
+<fullyQualifiedTypeName name="laundrylist.model.ParseJson"/>
+<fullyQualifiedTypeName name="laundrylist.model.State"/>
+<fullyQualifiedTypeName name="laundrylist.model.JSONController.JSONRequest"/>
+<fullyQualifiedTypeName name="android.content.Context"/>
+<fullyQualifiedTypeName name="android.widget.Toast"/>
+<fullyQualifiedTypeName name="android.widget.EditText"/>
+</qualifiedTypeNameHistroy>

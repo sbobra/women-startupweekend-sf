@@ -1,0 +1,7 @@
+package laundrylist.model;
+
+public class UserData {
+	public UserData() {
+		
+	}
+}

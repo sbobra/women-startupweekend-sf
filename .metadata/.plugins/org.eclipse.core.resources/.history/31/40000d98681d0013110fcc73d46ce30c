@@ -1,0 +1,12 @@
+package laundrylist.controller;
+
+import laundrylist.view.ExplorenActivity;
+
+public class LoginController {
+	private LoginActivity activity;
+
+	public LoginController(LoginActivity activity) {
+		this.activity = activity;
+
+	}
+}
