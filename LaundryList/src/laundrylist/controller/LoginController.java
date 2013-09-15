@@ -46,10 +46,21 @@ public class LoginController extends Controller {
 
 		// data[0] = "jason.haury@gmail.com";
 		// data[1] = "asdf";
-
-		data[0] = username;
-		data[1] = password;
-		json.request(JSONRequest.LOGIN, data);
+		if (State.getInstance().DEBUG) {
+			JSONObject j = new JSONObject();
+			try {
+				j.put("id", 1);
+				j.put("name", "Bob saggat");
+				onJSONReceived(j);
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			data[0] = username;
+			data[1] = password;
+			json.request(JSONRequest.LOGIN, data);
+		}
 	}
 
 	@Override
@@ -71,6 +82,7 @@ public class LoginController extends Controller {
 		State.getInstance().setName(name);
 
 		if (!name.equals("")) {
+			Toast.makeText(view.getApplicationContext(), "Welcome, " + State.getInstance().getName(), Toast.LENGTH_SHORT).show();
 			view.startActivity(new Intent(view, ExploreActivity.class));
 			view.finish();
 		} else {
@@ -94,7 +106,7 @@ public class LoginController extends Controller {
 		}
 		Log.i(LoginController.class.getName(), id);
 		State.getInstance().setID(Integer.valueOf(id));
-
+		Toast.makeText(view.getApplicationContext(), "Welcome, " + State.getInstance().getName(), Toast.LENGTH_SHORT).show();
 		view.startActivity(new Intent(view, ExploreActivity.class));
 		view.finish();
 	}

@@ -10,6 +10,16 @@ public class Goal {
 	String ownerId = "";
 	String isComplete = "";
 	String timestamp = "";
+	String id = "";
+	
+	public void setId(String id) {
+		this.id = id;
+		
+	}
+	
+	public String getId() {
+		return id;
+	}
 	
 	public void setTimestamp(String timestamp) {
 		this.timestamp = timestamp;

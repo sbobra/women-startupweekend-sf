@@ -41,6 +41,10 @@
             android:name="laundrylist.view.GoalActivity3"
             android:label="@string/app_name" >
         </activity>
+        <activity
+            android:name="laundrylist.view.GoalFocusActivity"
+            android:label="@string/app_name" >
+        </activity>
     </application>
 
 </manifest>

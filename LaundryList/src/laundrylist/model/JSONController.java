@@ -38,11 +38,11 @@ public class JSONController {
 	}
 
 	public enum JSONRequest {
-		LOGIN, MYGOALS;
+		LOGIN, MYGOALS, FEED;
 	}
 
 	public enum JSONPost {
-		NEWACCOUNT, NEWGOAL;
+		NEWACCOUNT, NEWGOAL, GOALCOMPLETED;
 	}
 
 	public void request(JSONRequest t, Object[] d) {
@@ -85,6 +85,11 @@ public class JSONController {
 				baseString += id;
 				baseString += "/" + completed;
 				Log.i("JSONController", baseString);
+				return baseString;
+			case FEED:
+				int myId = (Integer) data[1];
+				baseString += "/feed/";
+				baseString += myId;
 				return baseString;
 			}
 			return "";
@@ -159,6 +164,10 @@ public class JSONController {
 			case NEWGOAL:
 				baseString += "/goals";
 				return baseString;
+			case GOALCOMPLETED:
+				baseString+="/goals/update/";
+				baseString+= data[1];
+				return baseString;
 			}
 			return "";
 
@@ -181,6 +190,10 @@ public class JSONController {
 				stri += "security=" + (String) data[4] + "&";
 				stri += "category=" + (String) data[5];
 				return stri;
+			case GOALCOMPLETED:
+				String strin = "";
+				strin += "isComplete=1";
+				return strin;
 			}
 			return "";
 		}

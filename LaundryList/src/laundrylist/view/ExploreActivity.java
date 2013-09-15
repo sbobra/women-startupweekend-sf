@@ -16,7 +16,6 @@
 
 package laundrylist.view;
 
-import laundrylist.controller.ExploreController;
 import laundrylist.controller.OnRefreshListener;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -50,7 +49,6 @@ import com.example.laundrylist.R;
  * @see ScreenSlidePageFragment
  */
 public class ExploreActivity extends FragmentActivity {
-	private ExploreController controller;
 	/**
 	 * The number of pages (wizard steps) to show in this demo.
 	 */
@@ -77,7 +75,6 @@ public class ExploreActivity extends FragmentActivity {
 		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.activity_explore);
-		controller = new ExploreController(this);
 
 		i1 = (ImageView) findViewById(R.id.imageView1);
 		i2 = (ImageView) findViewById(R.id.imageView2);

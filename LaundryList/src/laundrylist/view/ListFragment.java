@@ -19,15 +19,19 @@ package laundrylist.view;
 import laundrylist.controller.ListFragmentController;
 import laundrylist.controller.OnRefreshListener;
 import laundrylist.model.Goal;
+import laundrylist.model.State;
 
 import com.example.laundrylist.R;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -89,19 +93,33 @@ public class ListFragment extends Fragment implements OnRefreshListener {
 		return rootView;
 	}
 
-	public void populate(Goal g) {
+	public void populate(final Goal g) {
 		if (rootView != null) {
 			TableLayout table = (TableLayout) rootView
 					.findViewById(R.id.tableLayout);
 			// Inflate your row "template" and fill out the fields.
-			TableRow row = (TableRow) LayoutInflater
-					.from(rootView.getContext()).inflate(R.layout.homelist_row,
-							null);
+			final TableRow row = (TableRow) LayoutInflater.from(
+					rootView.getContext()).inflate(R.layout.homelist_row, null);
 			((TextView) row.findViewById(R.id.mission)).setText(g.getMission());
-			((TextView) row.findViewById(R.id.category)).setText(g.getCategory());
-			((TextView) row.findViewById(R.id.security)).setText(g.getSecurity());
-			((TextView) row.findViewById(R.id.duration)).setText(g.getDuration());
-			((TextView) row.findViewById(R.id.daysLeft)).setText(g.getDaysLeft());
+			((TextView) row.findViewById(R.id.category)).setText(g
+					.getCategory());
+			((TextView) row.findViewById(R.id.security)).setText(g
+					.getSecurity());
+			((TextView) row.findViewById(R.id.duration)).setText(""
+					+ g.getDuration());
+			((TextView) row.findViewById(R.id.daysLeft)).setText(g
+					.getDaysLeft());
+			row.setOnClickListener(new View.OnClickListener() {
+				public void onClick(View v) {
+					Log.i("ListFragment", "Goal pressed! Goal: " + g.getId());
+					Intent intent = new Intent(rootView.getContext(), GoalFocusActivity.class);
+					Bundle bundle = new Bundle();
+					bundle.putString("mission", g.getMission());
+					bundle.putString("id", g.getId());
+					intent.putExtras(bundle);
+					startActivity(intent);
+				}
+			});
 
 			table.addView(row);
 			TableRow spacer = (TableRow) LayoutInflater.from(
@@ -118,8 +136,9 @@ public class ListFragment extends Fragment implements OnRefreshListener {
 					.findViewById(R.id.tableLayout);
 			int count = table.getChildCount();
 			for (int i = 0; i < count; i++) {
-			    View child = table.getChildAt(i);
-			    if (child instanceof TableRow) ((ViewGroup) child).removeAllViews();
+				View child = table.getChildAt(i);
+				if (child instanceof TableRow)
+					((ViewGroup) child).removeAllViews();
 			}
 		}
 

@@ -3,6 +3,7 @@ package laundrylist.model;
 public class State {
 	private static State instance;
 	private String name = "";
+	public boolean DEBUG = false;
 	private Goal currentNewGoal = new Goal();
 	private int id = 0;
 	public static State getInstance() {

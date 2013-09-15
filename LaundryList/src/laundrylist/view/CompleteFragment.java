@@ -100,7 +100,7 @@ public class CompleteFragment extends Fragment implements OnRefreshListener {
 			((TextView) row.findViewById(R.id.mission)).setText(g.getMission());
 			((TextView) row.findViewById(R.id.category)).setText(g.getCategory());
 			((TextView) row.findViewById(R.id.security)).setText(g.getSecurity());
-			((TextView) row.findViewById(R.id.duration)).setText(g.getDuration());
+			((TextView) row.findViewById(R.id.duration)).setText(""+g.getDuration());
 			((TextView) row.findViewById(R.id.daysLeft)).setText(g.getDaysLeft());
 
 			table.addView(row);

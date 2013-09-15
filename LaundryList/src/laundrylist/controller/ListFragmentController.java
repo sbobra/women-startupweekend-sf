@@ -4,13 +4,16 @@ import laundrylist.model.Goal;
 import laundrylist.model.JSONController;
 import laundrylist.model.JSONController.JSONRequest;
 import laundrylist.model.State;
+import laundrylist.view.ExploreActivity;
 import laundrylist.view.ListFragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Intent;
 import android.util.Log;
+import android.widget.Toast;
 
 public class ListFragmentController extends Controller {
 	private ListFragment fragment;
@@ -63,6 +66,7 @@ public class ListFragmentController extends Controller {
 				String isComplete = "";
 				String photo = "";
 				String timestamp = "";
+				String goalId = "";
 
 				mission = jsonObject.getString("mission");
 				security = jsonObject.getString("security");
@@ -73,9 +77,11 @@ public class ListFragmentController extends Controller {
 				isComplete = jsonObject.getString("isComplete");
 				photo = jsonObject.getString("photo");
 				timestamp = jsonObject.getString("timestamp");
+				goalId = jsonObject.getString("id");
 				
 				Goal g = new Goal();
 				g.setMission(mission);
+				g.setId(goalId);
 				g.setSecurity(security);
 				g.setDaysLeft(daysLeft);
 				g.setCategory(category);
@@ -84,6 +90,7 @@ public class ListFragmentController extends Controller {
 				g.setIsComplete(isComplete);
 				g.setURL(photo);
 				g.setTimestamp(timestamp);
+				g.setId(goalId);
 				
 
 				Log.i("ListFragmentController", "Data: " + mission + security
@@ -96,6 +103,20 @@ public class ListFragmentController extends Controller {
 			}
 
 		}
+	}
+	
+	@Override
+	public void onPostResponded(String s) {
+		String id = "";
+		try {
+			JSONObject jsonObject = new JSONObject(s);
+			id = jsonObject.getString("id");
+			
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 	public void onRefresh() {
