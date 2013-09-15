@@ -1,0 +1,31 @@
+package laundrylist.model;
+
+public class Goal {
+	String photoURL="";
+	String mission="";
+	String security="";
+	int duration = 0;
+	
+	public Goal() {
+		
+	}
+	
+	public void setURL(String URL) {
+		photoURL = URL;
+	}
+	
+	public String getURL() {
+		return photoURL;
+	}
+	
+	public String getMission() {
+		return mission;
+	}
+	public void setMission(String s) {
+		mission = s;
+	}
+	
+	public void setSecurity(String s) {
+		s
+	}
+}

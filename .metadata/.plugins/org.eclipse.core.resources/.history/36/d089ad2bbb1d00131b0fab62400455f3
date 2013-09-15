@@ -1,0 +1,5 @@
+package laundrylist.model;
+
+public class Goal {
+
+}

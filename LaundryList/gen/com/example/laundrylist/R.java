@@ -10,6 +10,9 @@ package com.example.laundrylist;
 public final class R {
     public static final class attr {
     }
+    public static final class color {
+        public static final int red=0x7f060000;
+    }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
 
@@ -21,30 +24,64 @@ public final class R {
         public static final int activity_vertical_margin=0x7f040001;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
+        public static final int greenbutton=0x7f020000;
+        public static final int ic_launcher=0x7f020001;
+        public static final int redbutton=0x7f020002;
+        public static final int spacer=0x7f020003;
     }
     public static final class id {
-        public static final int content=0x7f080009;
-        public static final int loginButton=0x7f080007;
-        public static final int nameLayout=0x7f080001;
-        public static final int nameTextBox=0x7f080003;
-        public static final int newAcctButton=0x7f080008;
-        public static final int pager=0x7f080000;
-        public static final int passwordTextBox=0x7f080006;
-        public static final int textView2=0x7f080004;
-        public static final int textView3=0x7f080002;
-        public static final int usernameTextBox=0x7f080005;
+        public static final int anyoneButton=0x7f09000d;
+        public static final int attrib_name=0x7f09001b;
+        public static final int attrib_value=0x7f09001c;
+        public static final int content=0x7f090019;
+        public static final int daysButton=0x7f09000e;
+        public static final int doButton=0x7f090008;
+        public static final int friendsButton=0x7f09000c;
+        public static final int goalTextBox=0x7f090007;
+        public static final int imageView1=0x7f090002;
+        public static final int imageView2=0x7f090003;
+        public static final int imageView3=0x7f090004;
+        public static final int learnButton=0x7f09000a;
+        public static final int lifetimeButton=0x7f090010;
+        public static final int loginButton=0x7f090017;
+        public static final int menuButton=0x7f090000;
+        public static final int menu_bookmark=0x7f09001d;
+        public static final int menu_delete=0x7f090021;
+        public static final int menu_preferences=0x7f090022;
+        public static final int menu_save=0x7f09001e;
+        public static final int menu_search=0x7f09001f;
+        public static final int menu_share=0x7f090020;
+        public static final int monthsButton=0x7f09000f;
+        public static final int myselfButton=0x7f09000b;
+        public static final int nameLayout=0x7f090011;
+        public static final int nameTextBox=0x7f090013;
+        public static final int newAcctButton=0x7f090018;
+        public static final int newGoalButton=0x7f090001;
+        public static final int pager=0x7f090005;
+        public static final int passwordTextBox=0x7f090016;
+        public static final int seeButton=0x7f090009;
+        public static final int tableLayout=0x7f09001a;
+        public static final int textView2=0x7f090014;
+        public static final int textView3=0x7f090012;
+        public static final int usernameTextBox=0x7f090015;
+        public static final int welcomeText=0x7f090006;
     }
     public static final class layout {
         public static final int activity_explore=0x7f030000;
-        public static final int activity_login=0x7f030001;
-        public static final int fragment_explore=0x7f030002;
-        public static final int fragment_home=0x7f030003;
-        public static final int fragment_newgoal=0x7f030004;
-        public static final int fragment_screen_slide_page=0x7f030005;
+        public static final int activity_goal1=0x7f030001;
+        public static final int activity_goal2=0x7f030002;
+        public static final int activity_goal3=0x7f030003;
+        public static final int activity_login=0x7f030004;
+        public static final int fragment_explore=0x7f030005;
+        public static final int fragment_home=0x7f030006;
+        public static final int fragment_newgoal=0x7f030007;
+        public static final int fragment_screen_slide_page=0x7f030008;
+        public static final int homelist_row=0x7f030009;
+        public static final int spacer_row=0x7f03000a;
     }
     public static final class menu {
-        public static final int login=0x7f070000;
+        public static final int login=0x7f080000;
+        public static final int menu_bar=0x7f080001;
     }
     public static final class string {
         public static final int action_add_item=0x7f05000c;
@@ -107,10 +144,10 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f060000;
+        public static final int AppBaseTheme=0x7f070000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f060001;
+        public static final int AppTheme=0x7f070001;
     }
 }

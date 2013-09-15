@@ -29,6 +29,18 @@
             android:name="laundrylist.view.ExploreActivity"
             android:label="@string/app_name" >
         </activity>
+        <activity
+            android:name="laundrylist.view.GoalActivity1"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="laundrylist.view.GoalActivity2"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="laundrylist.view.GoalActivity3"
+            android:label="@string/app_name" >
+        </activity>
     </application>
 
 </manifest>

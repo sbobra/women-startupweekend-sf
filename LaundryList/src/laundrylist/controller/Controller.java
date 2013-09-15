@@ -7,7 +7,7 @@ public class Controller {
 
 	}
 
-	public void onPostResponded(Object o) {
+	public void onPostResponded(String o) {
 
 	}
 }

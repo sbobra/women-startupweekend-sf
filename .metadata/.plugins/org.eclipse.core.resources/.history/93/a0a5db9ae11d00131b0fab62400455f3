@@ -1,0 +1,13 @@
+package laundrylist.controller;
+
+import laundrylist.view.ListFragment;
+
+
+public class ListFragmentController extends Controller{
+	private ListFragment fragment;
+
+	public ListFragmentController(laundrylist.view.ListFragment listFragment) {
+		this.fragment = listFragment;
+
+	}
+}

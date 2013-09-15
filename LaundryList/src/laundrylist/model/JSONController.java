@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.StringWriter;
 
 import laundrylist.controller.Controller;
 
@@ -34,44 +35,13 @@ public class JSONController {
 	public JSONController(Controller c) {
 		controller = c;
 	}
-
+	
 	public enum JSONRequest {
-		LOGIN;
-		public static JSONRequest fromInteger(int x) {
-			switch (x) {
-			case 0:
-				return LOGIN;
-			}
-			return null;
-		}
-
-		public static Integer toInteger(JSONRequest x) {
-			switch (x) {
-			case LOGIN:
-				return 0;
-			}
-			return null;
-		}
-
+		LOGIN, MYGOALS;
 	}
 
 	public enum JSONPost {
-		NEWACCOUNT;
-		public static JSONPost fromInteger(int x) {
-			switch (x) {
-			case 0:
-				return NEWACCOUNT;
-			}
-			return null;
-		}
-
-		public static Integer toInteger(JSONPost x) {
-			switch (x) {
-			case NEWACCOUNT:
-				return 0;
-			}
-			return null;
-		}
+		NEWACCOUNT, NEWGOAL;
 	}
 
 	public void request(JSONRequest t, Object[] d) {
@@ -105,6 +75,14 @@ public class JSONController {
 				baseString += username;
 				baseString += "/";
 				baseString += password;
+				Log.i("JSONController", baseString);
+				return baseString;
+			case MYGOALS:
+				int id = (Integer) data[1];
+				int completed = (Integer) data[2];
+				baseString+="/goals/";
+				baseString+=id + "/";
+				baseString+=completed;
 				Log.i("JSONController", baseString);
 				return baseString;
 			}
@@ -166,26 +144,11 @@ public class JSONController {
 			case NEWACCOUNT:
 				baseString += "/signup";
 				return baseString;
+			case NEWGOAL:
+				baseString+="/goals";
+				return baseString;
 			}
 			return "";
-
-		}
-
-		public JSONObject getJSON(Object[] data) {
-			JSONPost type = (JSONPost) data[0];
-			switch (type) {
-			case NEWACCOUNT:
-				JSONObject object = new JSONObject();
-				try {
-					object.put("email", (String) data[1]);
-					object.put("name", (String) data[2]);
-					object.put("password", (String) data[3]);
-					return object;
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-			}
-			return null;
 
 		}
 
@@ -198,6 +161,14 @@ public class JSONController {
 				str += "password=" + (String) data[3] + "&";
 				str += "name=" + (String) data[2];
 				return str;
+			case NEWGOAL: 
+				String stri = "";
+				stri += "ownerId=" + String.valueOf((Integer)data[1]) + "&";
+				stri += "mission=" + (String) data[2] + "&";
+				stri += "duration=" + String.valueOf((Integer)data[3]) + "&";
+				stri += "security=" + (String) data[4] + "&";
+				stri += "category=" + (String) data[5];
+				return stri;
 			}
 			return "";
 		}
@@ -230,7 +201,8 @@ public class JSONController {
 																		// in
 																		// the
 																		// entity
-					return in.toString();
+					Log.i("JSONController", "Response received");
+					return ((String) convertStreamToString(in));
 				}
 
 			} catch (Exception e) {
@@ -238,17 +210,15 @@ public class JSONController {
 			}
 			return "";
 		}
+		
+		public String convertStreamToString(InputStream is) {
+		    java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
+		    return s.hasNext() ? s.next() : "";
+		}
 
 		@Override
 		protected void onPostExecute(String result) {
-			/*
-			 * JSONObject jsonObject; try { jsonObject = new JSONObject(result);
-			 * Log.i(JSONController.class.getName(),
-			 * jsonObject.getString("id"));
-			 * Log.i(JSONController.class.getName(),
-			 * jsonObject.getString("name")); } catch (JSONException e) { //
-			 * TODO Auto-generated catch block e.printStackTrace(); }
-			 */
+
 			controller.onPostResponded(result);
 
 		}

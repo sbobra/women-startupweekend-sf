@@ -16,6 +16,9 @@
 
 package laundrylist.view;
 
+import laundrylist.controller.OnRefreshListener;
+import laundrylist.model.State;
+
 import com.example.laundrylist.R;
 
 import android.app.Fragment;
@@ -32,7 +35,7 @@ import android.widget.TextView;
  * <p>This class is used by the {@link CardFlipActivity} and {@link
  * ScreenSlideActivity} samples.</p>
  */
-public class ExploreFragment extends Fragment {
+public class ExploreFragment extends Fragment implements OnRefreshListener {
     /**
      * The argument key for the page number this fragment represents.
      */
@@ -69,7 +72,7 @@ public class ExploreFragment extends Fragment {
                 .inflate(R.layout.fragment_explore, container, false);
 
         // Set the title view to show the page number.
-        ((TextView) rootView.findViewById(android.R.id.text1)).setText(R.string.title_template_explore);
+        ((TextView) rootView.findViewById(android.R.id.text1)).setText("EXPLORE: " + State.getInstance().getName());
 
         return rootView;
     }
@@ -80,4 +83,11 @@ public class ExploreFragment extends Fragment {
     public int getPageNumber() {
         return mPageNumber;
     }
+
+
+	@Override
+	public void onRefresh() {
+		// TODO Auto-generated method stub
+		
+	}
 }

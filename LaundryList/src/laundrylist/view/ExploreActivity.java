@@ -16,23 +16,23 @@
 
 package laundrylist.view;
 
-import com.example.laundrylist.R;
-
 import laundrylist.controller.ExploreController;
-import android.view.Window;
-import android.view.WindowManager;
-
+import laundrylist.controller.OnRefreshListener;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v13.app.FragmentStatePagerAdapter;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.NavUtils;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.ImageView;
+
+import com.example.laundrylist.R;
 
 /**
  * Demonstrates a "screen-slide" animation using a {@link ViewPager}. Because
@@ -67,6 +67,9 @@ public class ExploreActivity extends FragmentActivity {
 	 */
 	private PagerAdapter mPagerAdapter;
 
+	private ImageView i1, i2, i3;
+	private Button newGoal;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -76,6 +79,18 @@ public class ExploreActivity extends FragmentActivity {
 		setContentView(R.layout.activity_explore);
 		controller = new ExploreController(this);
 
+		i1 = (ImageView) findViewById(R.id.imageView1);
+		i2 = (ImageView) findViewById(R.id.imageView2);
+		i3 = (ImageView) findViewById(R.id.imageView3);
+		
+		newGoal = (Button) findViewById(R.id.newGoalButton);
+		newGoal.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				startActivity(new Intent(v.getContext(), GoalActivity1.class));
+				finish();
+			}
+		});
+
 		// Instantiate a ViewPager and a PagerAdapter.
 		mPager = (ViewPager) findViewById(R.id.pager);
 		mPagerAdapter = new ScreenSlidePagerAdapter(getFragmentManager());
@@ -84,6 +99,24 @@ public class ExploreActivity extends FragmentActivity {
 		mPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
 			@Override
 			public void onPageSelected(int position) {
+				((OnRefreshListener)((ScreenSlidePagerAdapter)mPagerAdapter).getItem(position)).onRefresh();
+				switch (position) {
+				case 0:
+					i1.setImageResource(R.drawable.greenbutton);
+					i2.setImageResource(R.drawable.redbutton);
+					i3.setImageResource(R.drawable.redbutton);
+					break;
+				case 1:
+					i1.setImageResource(R.drawable.redbutton);
+					i2.setImageResource(R.drawable.greenbutton);
+					i3.setImageResource(R.drawable.redbutton);
+					break;
+				case 2:
+					i1.setImageResource(R.drawable.redbutton);
+					i2.setImageResource(R.drawable.redbutton);
+					i3.setImageResource(R.drawable.greenbutton);
+					break;
+				}
 				// When changing pages, reset the action bar actions since they
 				// are dependent
 				// on which page is currently active. An alternative approach is
@@ -92,6 +125,7 @@ public class ExploreActivity extends FragmentActivity {
 				// exposing actions),
 				// but for simplicity, the activity provides the actions in this
 				// sample.
+
 				invalidateOptionsMenu();
 			}
 		});
@@ -101,7 +135,7 @@ public class ExploreActivity extends FragmentActivity {
 	 * A simple pager adapter that represents 5 {@link ScreenSlidePageFragment}
 	 * objects, in sequence.
 	 */
-	private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
+	public class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
 		public ScreenSlidePagerAdapter(FragmentManager fm) {
 			super(fm);
 		}
@@ -119,7 +153,7 @@ public class ExploreActivity extends FragmentActivity {
 		public Fragment getFragment(int position) {
 			switch (position) {
 			case 0:
-				return NewGoalFragment.create(position);
+				return CompleteFragment.create(position);
 			case 1:
 				return ExploreFragment.create(position);
 			case 2:

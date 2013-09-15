@@ -16,13 +16,19 @@
 
 package laundrylist.view;
 
+import laundrylist.controller.ListFragmentController;
+import laundrylist.controller.OnRefreshListener;
+
 import com.example.laundrylist.R;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 /**
@@ -32,11 +38,12 @@ import android.widget.TextView;
  * <p>This class is used by the {@link CardFlipActivity} and {@link
  * ScreenSlideActivity} samples.</p>
  */
-public class ListFragment extends Fragment {
+public class ListFragment extends Fragment  implements OnRefreshListener {
     /**
      * The argument key for the page number this fragment represents.
      */
     public static final String ARG_PAGE = "page";
+    public ListFragmentController controller = null;
 
     /**
      * The fragment's page number, which is set to the argument value for {@link #ARG_PAGE}.
@@ -59,6 +66,8 @@ public class ListFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPageNumber = getArguments().getInt(ARG_PAGE);
+        if (controller == null)
+        	controller = new ListFragmentController(this);
     }
 
     @Override
@@ -71,6 +80,19 @@ public class ListFragment extends Fragment {
         // Set the title view to show the page number.
         ((TextView) rootView.findViewById(android.R.id.text1)).setText(R.string.title_template_home);
 
+        
+        TableLayout table = (TableLayout)rootView.findViewById(R.id.tableLayout);
+        for(int i = 0; i<4;i++)
+        {
+            // Inflate your row "template" and fill out the fields.
+            TableRow row = (TableRow)LayoutInflater.from(rootView.getContext()).inflate(R.layout.homelist_row, null);
+            table.addView(row);
+            TableRow spacer = (TableRow)LayoutInflater.from(rootView.getContext()).inflate(R.layout.spacer_row, null);
+            table.addView(spacer);
+        }
+        table.requestLayout();
+        
+        
         return rootView;
     }
 
@@ -80,4 +102,16 @@ public class ListFragment extends Fragment {
     public int getPageNumber() {
         return mPageNumber;
     }
+
+
+	@Override
+	public void onRefresh() {
+		if (controller!=null)
+			controller.onRefresh();
+		else
+	        controller = new ListFragmentController(this);
+			controller.onRefresh();
+
+		
+	}
 }

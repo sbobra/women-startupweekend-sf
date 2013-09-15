@@ -1,0 +1,14 @@
+package laundrylist.model;
+
+public class State {
+	private static State instance;
+	private String name = "";
+	private int id = 0;
+	public static State getInstance() {
+		if (instance == null) {
+            instance = new State();
+        }
+        return instance;
+		
+	}
+}

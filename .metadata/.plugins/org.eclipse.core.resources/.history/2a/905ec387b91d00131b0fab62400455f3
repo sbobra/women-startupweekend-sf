@@ -1,0 +1,40 @@
+package laundrylist.model;
+
+public class State {
+	private static State instance;
+	private String name = "";
+	private int id = 0;
+	public static State getInstance() {
+		if (instance == null) {
+            instance = new State();
+        }
+        return instance;
+		
+	}
+	
+	public void setName(String n) {
+		name = n;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public void setID(int i) {
+		id = i;
+	}
+	
+	public int getID() {
+		return id;
+	}
+
+	
+	public class Goal {
+		public enum Privacy {
+			
+		}
+		public Goal() {
+			
+		}
+	}
+}

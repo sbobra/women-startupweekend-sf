@@ -1,0 +1,13 @@
+package laundrylist.controller;
+
+import android.app.ListFragment;
+
+
+public class ListFragmentController extends Controller{
+	private ListFragment fragment;
+
+	public ListFragmentController(ListFragment fragment) {
+		this.fragment = activity;
+
+	}
+}

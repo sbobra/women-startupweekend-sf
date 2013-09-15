@@ -1,0 +1,11 @@
+package laundrylist.controller;
+
+
+public class ListFragmentController extends Controller{
+	private ExploreActivity activity;
+
+	public ExploreController(ExploreActivity activity) {
+		this.activity = activity;
+
+	}
+}
