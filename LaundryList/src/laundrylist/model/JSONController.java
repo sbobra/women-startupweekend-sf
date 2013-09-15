@@ -22,6 +22,7 @@ import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HTTP;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -35,7 +36,7 @@ public class JSONController {
 	public JSONController(Controller c) {
 		controller = c;
 	}
-	
+
 	public enum JSONRequest {
 		LOGIN, MYGOALS;
 	}
@@ -80,9 +81,9 @@ public class JSONController {
 			case MYGOALS:
 				int id = (Integer) data[1];
 				int completed = (Integer) data[2];
-				baseString+="/goals/";
-				baseString+=id + "/";
-				baseString+=completed;
+				baseString += "/goals/";
+				baseString += id;
+				baseString += "/" + completed;
 				Log.i("JSONController", baseString);
 				return baseString;
 			}
@@ -123,11 +124,22 @@ public class JSONController {
 
 		@Override
 		protected void onPostExecute(String result) {
+			Log.i("JSONController", result);
 			JSONObject jsonObject;
 			try {
 				jsonObject = new JSONObject(result);
 				controller.onJSONReceived(jsonObject);
 			} catch (JSONException e) {
+				try {
+					result = result.substring(1, result.length()-1);
+					result = result.replaceAll("\\\\", "");
+					Log.i("JSONController", result);
+					JSONArray jsonArray = new JSONArray(result);
+					controller.onJSONArrayReceived(jsonArray);
+				} catch (JSONException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -145,7 +157,7 @@ public class JSONController {
 				baseString += "/signup";
 				return baseString;
 			case NEWGOAL:
-				baseString+="/goals";
+				baseString += "/goals";
 				return baseString;
 			}
 			return "";
@@ -161,11 +173,11 @@ public class JSONController {
 				str += "password=" + (String) data[3] + "&";
 				str += "name=" + (String) data[2];
 				return str;
-			case NEWGOAL: 
+			case NEWGOAL:
 				String stri = "";
-				stri += "ownerId=" + String.valueOf((Integer)data[1]) + "&";
+				stri += "ownerId=" + String.valueOf((Integer) data[1]) + "&";
 				stri += "mission=" + (String) data[2] + "&";
-				stri += "duration=" + String.valueOf((Integer)data[3]) + "&";
+				stri += "duration=" + String.valueOf((Integer) data[3]) + "&";
 				stri += "security=" + (String) data[4] + "&";
 				stri += "category=" + (String) data[5];
 				return stri;
@@ -210,10 +222,10 @@ public class JSONController {
 			}
 			return "";
 		}
-		
+
 		public String convertStreamToString(InputStream is) {
-		    java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
-		    return s.hasNext() ? s.next() : "";
+			java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
+			return s.hasNext() ? s.next() : "";
 		}
 
 		@Override
