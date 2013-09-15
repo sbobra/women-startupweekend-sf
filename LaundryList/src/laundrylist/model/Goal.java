@@ -6,6 +6,42 @@ public class Goal {
 	String security="";
 	String category = "";
 	int duration = 0;
+	String daysLeft = "";
+	String ownerId = "";
+	String isComplete = "";
+	String timestamp = "";
+	
+	public void setTimestamp(String timestamp) {
+		this.timestamp = timestamp;
+	}
+	
+	public String getTimestamp() {
+		return timestamp;
+	}
+	
+	public void setIsComplete(String complete) {
+		this.isComplete = complete;
+	}
+	
+	public String getIsComplete() {
+		return isComplete;
+	}
+	
+	public void setOwnerId(String ownerId) {
+		this.ownerId = ownerId;
+	}
+	
+	public String getOwnerId() {
+		return ownerId;
+	}
+	
+	public void setDaysLeft(String daysLeft) {
+		this.daysLeft = daysLeft;
+	}
+	
+	public String getDaysLeft() {
+		return daysLeft;
+	}
 	
 	public void setURL(String URL) {
 		photoURL = URL;

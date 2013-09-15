@@ -31,11 +31,12 @@ public final class R {
     }
     public static final class id {
         public static final int anyoneButton=0x7f09000d;
-        public static final int attrib_name=0x7f09001b;
-        public static final int attrib_value=0x7f09001c;
+        public static final int category=0x7f09001d;
         public static final int content=0x7f090019;
         public static final int daysButton=0x7f09000e;
+        public static final int daysLeft=0x7f09001f;
         public static final int doButton=0x7f090008;
+        public static final int duration=0x7f09001e;
         public static final int friendsButton=0x7f09000c;
         public static final int goalTextBox=0x7f090007;
         public static final int imageView1=0x7f090002;
@@ -45,12 +46,13 @@ public final class R {
         public static final int lifetimeButton=0x7f090010;
         public static final int loginButton=0x7f090017;
         public static final int menuButton=0x7f090000;
-        public static final int menu_bookmark=0x7f09001d;
-        public static final int menu_delete=0x7f090021;
-        public static final int menu_preferences=0x7f090022;
-        public static final int menu_save=0x7f09001e;
-        public static final int menu_search=0x7f09001f;
-        public static final int menu_share=0x7f090020;
+        public static final int menu_bookmark=0x7f090020;
+        public static final int menu_delete=0x7f090024;
+        public static final int menu_preferences=0x7f090025;
+        public static final int menu_save=0x7f090021;
+        public static final int menu_search=0x7f090022;
+        public static final int menu_share=0x7f090023;
+        public static final int mission=0x7f09001b;
         public static final int monthsButton=0x7f09000f;
         public static final int myselfButton=0x7f09000b;
         public static final int nameLayout=0x7f090011;
@@ -59,6 +61,7 @@ public final class R {
         public static final int newGoalButton=0x7f090001;
         public static final int pager=0x7f090005;
         public static final int passwordTextBox=0x7f090016;
+        public static final int security=0x7f09001c;
         public static final int seeButton=0x7f090009;
         public static final int tableLayout=0x7f09001a;
         public static final int textView2=0x7f090014;
