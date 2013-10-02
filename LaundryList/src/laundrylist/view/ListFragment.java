@@ -16,6 +16,19 @@
 
 package laundrylist.view;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.entity.BufferedHttpEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+
 import laundrylist.controller.ListFragmentController;
 import laundrylist.controller.OnRefreshListener;
 import laundrylist.model.Goal;
@@ -26,6 +39,8 @@ import com.example.laundrylist.R;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -86,9 +101,6 @@ public class ListFragment extends Fragment implements OnRefreshListener {
 		ViewGroup rootView = (ViewGroup) inflater.inflate(
 				R.layout.fragment_home, container, false);
 
-		// Set the title view to show the page number.
-		((TextView) rootView.findViewById(android.R.id.text1))
-				.setText(R.string.title_template_home);
 		this.rootView = rootView;
 		return rootView;
 	}
@@ -101,19 +113,28 @@ public class ListFragment extends Fragment implements OnRefreshListener {
 			final TableRow row = (TableRow) LayoutInflater.from(
 					rootView.getContext()).inflate(R.layout.homelist_row, null);
 			((TextView) row.findViewById(R.id.mission)).setText(g.getMission());
-			((TextView) row.findViewById(R.id.category)).setText(g
+			((TextView) row.findViewById(R.id.category)).setText("category: "+g
 					.getCategory());
-			((TextView) row.findViewById(R.id.security)).setText(g
+			((TextView) row.findViewById(R.id.security)).setText("shared with: "+g
 					.getSecurity());
-			((TextView) row.findViewById(R.id.duration)).setText(""
+			((TextView) row.findViewById(R.id.duration)).setText("duration: "
 					+ g.getDuration());
-			((TextView) row.findViewById(R.id.daysLeft)).setText(g
+			((TextView) row.findViewById(R.id.daysLeft)).setText("due in: "+g
 					.getDaysLeft());
+			
+//			try {
+//				getImageFromURL(new URL("https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash4/c0.4.717.717/s320x320/999991_10151842996519557_878301698_n.jpg"), ((ImageView) row.findViewById(R.id.goal_thumb)));
+//			} catch (MalformedURLException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+
 			row.setOnClickListener(new View.OnClickListener() {
 				public void onClick(View v) {
 					Log.i("ListFragment", "Goal pressed! Goal: " + g.getId());
 					Intent intent = new Intent(rootView.getContext(), GoalFocusActivity.class);
 					Bundle bundle = new Bundle();
+					bundle.putBoolean("mygoal", true);
 					bundle.putString("mission", g.getMission());
 					bundle.putString("id", g.getId());
 					intent.putExtras(bundle);
@@ -129,6 +150,48 @@ public class ListFragment extends Fragment implements OnRefreshListener {
 			table.requestLayout();
 		}
 	}
+	
+//	public void getImageFromURL(final URL myURL, final ImageView image) {
+//		Thread thread = new Thread(new Runnable(){
+//		    @Override
+//		    public void run() {
+//		        try {
+////					Bitmap mIcon_val;
+////					try {
+////						mIcon_val = BitmapFactory.decodeStream(myURL.openConnection() .getInputStream());
+////						image.setImageBitmap(mIcon_val);
+////					} catch (IOException e) {
+////						// TODO Auto-generated catch block
+////						e.printStackTrace();
+////					}
+//		        	HttpGet httpRequest = null;
+//
+//		        	try {
+//		        	    httpRequest = new HttpGet(myURL.toURI());
+//		        	} catch (URISyntaxException e) {
+//		        	    e.printStackTrace();
+//		        	}
+//
+//		        	HttpClient httpclient = new DefaultHttpClient();
+//
+//		        	HttpResponse response = (HttpResponse) httpclient.execute(httpRequest);
+//
+//		        	HttpEntity entity = response.getEntity();
+//
+//		        	BufferedHttpEntity bufHttpEntity = new BufferedHttpEntity(entity);
+//
+//		        	InputStream instream = bufHttpEntity.getContent();
+//
+//		        	Bitmap bmp = BitmapFactory.decodeStream(instream);
+//		        	image.setImageBitmap(bmp);
+//		        } catch (Exception e) {
+//		            e.printStackTrace();
+//		        }
+//		    }
+//		});
+//
+//		thread.start(); 
+//	}
 
 	public void clearTable() {
 		if (rootView != null) {

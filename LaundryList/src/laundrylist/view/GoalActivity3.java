@@ -41,12 +41,12 @@ public class GoalActivity3 extends Activity {
 			}
 		});
 		lifetimeButton = (ImageView) findViewById(R.id.lifetimeButton);
-		lifetimeButton.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				State.getInstance().getGoal().setDuration(0);
-				next();
-			}
-		});
+//		lifetimeButton.setOnClickListener(new View.OnClickListener() {
+//			public void onClick(View v) {
+//				State.getInstance().getGoal().setDuration(0);
+//				next();
+//			}
+//		});
 		
 	}
 	

@@ -4,7 +4,7 @@
 		<item value="263" key="DIALOG_WIDTH"/>
 		<item value="0" key="DIALOG_Y_ORIGIN"/>
 		<item value="399" key="DIALOG_HEIGHT"/>
-		<item value="956" key="DIALOG_X_ORIGIN"/>
+		<item value="1017" key="DIALOG_X_ORIGIN"/>
 		<item value="1|Lucida Grande|11.0|0|COCOA|1|LucidaGrande" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
@@ -13,16 +13,16 @@
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="JSONPostTask" key="selection"/>
+		<item value="ViewPager" key="selection"/>
 		<list key="findhistory">
-			<item value="JSONPostTask"/>
-			<item value="jsonposttask"/>
-			<item value="g"/>
-			<item value="jsonarray"/>
-			<item value="screenSlidePageFragment"/>
-			<item value="screenSlide"/>
-			<item value="setadapt"/>
-			<item value="title_template"/>
+			<item value="viewpager"/>
+			<item value="home"/>
+			<item value="goalfocus"/>
+			<item value="complete"/>
+			<item value="tablelayout"/>
+			<item value="populate"/>
+			<item value="listfrag"/>
+			<item value="listfragment"/>
 		</list>
 		<list key="replacehistory">
 		</list>

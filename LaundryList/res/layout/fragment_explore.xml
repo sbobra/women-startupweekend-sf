@@ -27,26 +27,20 @@
         android:orientation="vertical"
         android:padding="16dp" >
 
-        <TableLayout
-            android:id="@+id/tableLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-        </TableLayout>
-
         <TextView
             android:id="@android:id/text1"
             style="?android:textAppearanceLarge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
+            android:text="Explore"
             android:textStyle="bold" />
 
-        <TextView
-            style="?android:textAppearanceMedium"
+        <TableLayout
+            android:id="@+id/tableLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:lineSpacingMultiplier="1.2"
-            android:text="@string/lorem_ipsum" />
+            android:layout_height="wrap_content" >
+        </TableLayout>
     </LinearLayout>
 
 </ScrollView>

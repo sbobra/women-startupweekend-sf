@@ -22,21 +22,20 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/red" >
+        android:background="@color/white" >
 
-        <Button
+        <ImageView
             android:id="@+id/menuButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:text="Menu" />
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/menu_bar" />
 
-        <Button
+        <ImageView
             android:id="@+id/newGoalButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_alignParentRight="true"
-            android:text="New" />
+            android:src="@drawable/add" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -48,25 +47,26 @@
                 android:id="@+id/imageView1"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@drawable/redbutton" />
+                android:src="@drawable/write" />
 
             <ImageView
                 android:id="@+id/imageView2"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@drawable/greenbutton" />
+                android:src="@drawable/anyone" />
 
             <ImageView
                 android:id="@+id/imageView3"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@drawable/redbutton" />
+                android:src="@drawable/check_off" />
         </LinearLayout>
     </RelativeLayout>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="@color/lightgrey" />
 
 </LinearLayout>

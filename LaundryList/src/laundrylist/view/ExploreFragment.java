@@ -24,6 +24,7 @@ import com.example.laundrylist.R;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -32,6 +33,7 @@ import android.view.ViewGroup;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.ImageView;
 
 /**
  * A fragment representing a single step in a wizard. The fragment shows a dummy
@@ -83,36 +85,49 @@ public class ExploreFragment extends Fragment implements OnRefreshListener {
 		ViewGroup rootView = (ViewGroup) inflater.inflate(
 				R.layout.fragment_explore, container, false);
 
-		// Set the title view to show the page number.
-		((TextView) rootView.findViewById(android.R.id.text1))
-				.setText(R.string.title_template_home);
 		this.rootView = rootView;
 		return rootView;
 	}
 
-	public void populate(Goal g) {
+	public void populate(final Goal g) {
 		if (rootView != null) {
 			Log.i("ExploreFragment", "populating");
 			TableLayout table = (TableLayout) rootView
 					.findViewById(R.id.tableLayout);
 			// Inflate your row "template" and fill out the fields.
 			TableRow row = (TableRow) LayoutInflater
-					.from(rootView.getContext()).inflate(R.layout.homelist_row,
+					.from(rootView.getContext()).inflate(R.layout.explore_row,
 							null);
 			((TextView) row.findViewById(R.id.mission)).setText(g.getMission());
-			((TextView) row.findViewById(R.id.category)).setText(g
+			((TextView) row.findViewById(R.id.category)).setText("category: "+g
 					.getCategory());
-			((TextView) row.findViewById(R.id.security)).setText(g
+			((TextView) row.findViewById(R.id.security)).setText("shared with: "+g
 					.getSecurity());
-			((TextView) row.findViewById(R.id.duration)).setText(""+g
+			((TextView) row.findViewById(R.id.duration)).setText("duration: "+g
 					.getDuration());
-			((TextView) row.findViewById(R.id.daysLeft)).setText(g
+			((TextView) row.findViewById(R.id.daysLeft)).setText("due in: "+g
 					.getDaysLeft());
+			
+			if (Integer.valueOf(g.getIsAd()) == 1) {
+				((ImageView) row.findViewById(R.id.goal_cover)).setImageResource(R.drawable.nike);
+			}
 
 			table.addView(row);
 			TableRow spacer = (TableRow) LayoutInflater.from(
 					rootView.getContext()).inflate(R.layout.spacer_row, null);
 			table.addView(spacer);
+			row.setOnClickListener(new View.OnClickListener() {
+				public void onClick(View v) {
+					Log.i("ExploreFragment", "Goal pressed! Goal: " + g.getId());
+					Intent intent = new Intent(rootView.getContext(), GoalFocusActivity.class);
+					Bundle bundle = new Bundle();
+					bundle.putBoolean("mygoal", false);
+					bundle.putString("mission", g.getMission());
+					bundle.putString("id", g.getId());
+					intent.putExtras(bundle);
+					startActivity(intent);
+				}
+			});
 
 			table.requestLayout();
 		}

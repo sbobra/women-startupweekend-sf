@@ -82,9 +82,6 @@ public class CompleteFragment extends Fragment implements OnRefreshListener {
 		ViewGroup rootView = (ViewGroup) inflater.inflate(
 				R.layout.fragment_newgoal, container, false);
 
-		// Set the title view to show the page number.
-		((TextView) rootView.findViewById(android.R.id.text1))
-				.setText(R.string.title_template_home);
 		this.rootView = rootView;
 		return rootView;
 	}
@@ -98,10 +95,10 @@ public class CompleteFragment extends Fragment implements OnRefreshListener {
 					.from(rootView.getContext()).inflate(R.layout.homelist_row,
 							null);
 			((TextView) row.findViewById(R.id.mission)).setText(g.getMission());
-			((TextView) row.findViewById(R.id.category)).setText(g.getCategory());
-			((TextView) row.findViewById(R.id.security)).setText(g.getSecurity());
-			((TextView) row.findViewById(R.id.duration)).setText(""+g.getDuration());
-			((TextView) row.findViewById(R.id.daysLeft)).setText(g.getDaysLeft());
+			((TextView) row.findViewById(R.id.category)).setText("category: "+g.getCategory());
+			((TextView) row.findViewById(R.id.security)).setText("shared with:  "+g.getSecurity());
+			((TextView) row.findViewById(R.id.duration)).setText("duration:  "+g.getDuration());
+			((TextView) row.findViewById(R.id.daysLeft)).setText("due in:  "+g.getDaysLeft());
 
 			table.addView(row);
 			TableRow spacer = (TableRow) LayoutInflater.from(

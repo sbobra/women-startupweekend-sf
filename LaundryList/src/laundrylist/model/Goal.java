@@ -11,6 +11,15 @@ public class Goal {
 	String isComplete = "";
 	String timestamp = "";
 	String id = "";
+	String isAd = "";
+	
+	public String getIsAd() {
+		return isAd;
+	}
+	
+	public void setIsAd(String s) {
+		isAd = s;
+	}
 	
 	public void setId(String id) {
 		this.id = id;

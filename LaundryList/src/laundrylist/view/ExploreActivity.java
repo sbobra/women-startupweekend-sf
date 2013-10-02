@@ -20,6 +20,7 @@ import laundrylist.controller.OnRefreshListener;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v13.app.FragmentStatePagerAdapter;
 import android.support.v4.app.FragmentActivity;
@@ -66,7 +67,7 @@ public class ExploreActivity extends FragmentActivity {
 	private PagerAdapter mPagerAdapter;
 
 	private ImageView i1, i2, i3;
-	private Button newGoal;
+	private ImageView newGoal;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +81,7 @@ public class ExploreActivity extends FragmentActivity {
 		i2 = (ImageView) findViewById(R.id.imageView2);
 		i3 = (ImageView) findViewById(R.id.imageView3);
 		
-		newGoal = (Button) findViewById(R.id.newGoalButton);
+		newGoal = (ImageView) findViewById(R.id.newGoalButton);
 		newGoal.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				startActivity(new Intent(v.getContext(), GoalActivity1.class));
@@ -99,19 +100,19 @@ public class ExploreActivity extends FragmentActivity {
 				((OnRefreshListener)((ScreenSlidePagerAdapter)mPagerAdapter).getItem(position)).onRefresh();
 				switch (position) {
 				case 0:
-					i1.setImageResource(R.drawable.greenbutton);
-					i2.setImageResource(R.drawable.redbutton);
-					i3.setImageResource(R.drawable.redbutton);
+					i1.setBackgroundColor(Color.DKGRAY);
+					i2.setBackgroundColor(Color.WHITE);
+					i3.setBackgroundColor(Color.WHITE);
 					break;
 				case 1:
-					i1.setImageResource(R.drawable.redbutton);
-					i2.setImageResource(R.drawable.greenbutton);
-					i3.setImageResource(R.drawable.redbutton);
+					i2.setBackgroundColor(Color.DKGRAY);
+					i3.setBackgroundColor(Color.WHITE);
+					i1.setBackgroundColor(Color.WHITE);
 					break;
 				case 2:
-					i1.setImageResource(R.drawable.redbutton);
-					i2.setImageResource(R.drawable.redbutton);
-					i3.setImageResource(R.drawable.greenbutton);
+					i3.setBackgroundColor(Color.DKGRAY);
+					i1.setBackgroundColor(Color.WHITE);
+					i2.setBackgroundColor(Color.WHITE);
 					break;
 				}
 				// When changing pages, reset the action bar actions since they
